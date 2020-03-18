@@ -1,0 +1,157 @@
+ksun@ksun-VirtualBox:~$ who
+ksun     :0           2019-08-26 00:24 (:0)
+ksun@ksun-VirtualBox:~$ rwho
+ksun     ksun-VirtualBox::0 Aug 26 00:24
+ksun@ksun-VirtualBox:~$ uptime
+ 12:22:35 up  4:47,  1 user,  load average: 0,02, 0,04, 0,00
+ksun@ksun-VirtualBox:~$ ruptime
+ksun-Virtual  up       4:45,     1 user,   load 0.08, 0.04, 0.01
+ksun@ksun-VirtualBox:~$ tty
+/dev/pts/2
+ksun@ksun-VirtualBox:~$ hostname
+ksun-VirtualBox
+ksun@ksun-VirtualBox:~$ uname
+Linux
+ksun@ksun-VirtualBox:~$ whoami
+ksun
+ksun@ksun-VirtualBox:~$ uname -a
+Linux ksun-VirtualBox 5.0.0-25-generic #26~18.04.1-Ubuntu SMP Thu Aug 1 13:51:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ksun@ksun-VirtualBox:~$ man ls
+ksun@ksun-VirtualBox:~$ date
+Сб сен  7 12:24:06 MSK 2019
+ksun@ksun-VirtualBox:~$ ps
+  PID TTY          TIME CMD
+31371 pts/2    00:00:00 bash
+32618 pts/2    00:00:00 ps
+ksun@ksun-VirtualBox:~$ mk
+mkdir             mkfs              mkfs.fat          mkinitramfs       mkntfs
+mkdosfs           mkfs.bfs          mkfs.minix        mkisofs           mksquashfs
+mke2fs            mkfs.cramfs       mkfs.msdos        mklost+found      mkswap
+mkfifo            mkfs.ext2         mkfs.ntfs         mkmanifest        mktemp
+mkfontdir         mkfs.ext3         mkfs.vfat         mk_modmap         mkzftree
+mkfontscale       mkfs.ext4         mkhomedir_helper  mknod    
+ksun@ksun-VirtualBox:~$ pwd
+/home/ksun
+ksun@ksun-VirtualBox:~$ ls
+ snap    Документы   Изображения   Общедоступные   Шаблоны
+ Видео   Загрузки    Музыка       'Рабочий стол'
+ksun@ksun-VirtualBox:~$ mkdir dir1
+ksun@ksun-VirtualBox:~$ ls
+ dir1   Видео       Загрузки      Музыка         'Рабочий стол'
+ snap   Документы   Изображения   Общедоступные   Шаблоны
+ksun@ksun-VirtualBox:~$ cd dir1
+ksun@ksun-VirtualBox:~/dir1$ pwd
+/home/ksun/dir1
+ksun@ksun-VirtualBox:~/dir1$ mkdir dir2
+ksun@ksun-VirtualBox:~/dir1$ ls
+dir2
+ksun@ksun-VirtualBox:~/dir1$ cd dir2
+ksun@ksun-VirtualBox:~/dir1/dir2$ cd ..
+ksun@ksun-VirtualBox:~/dir1$ pwd
+/home/ksun/dir1
+ksun@ksun-VirtualBox:~/dir1$ cd
+ksun@ksun-VirtualBox:~$ mkdir dir0
+ksun@ksun-VirtualBox:~$ cd dir1/dir2
+ksun@ksun-VirtualBox:~/dir1/dir2$ cd ../..
+ksun@ksun-VirtualBox:~$ cd dir0
+ksun@ksun-VirtualBox:~/dir0$ pwd
+/home/ksun/dir0
+ksun@ksun-VirtualBox:~/dir0$ cd
+ksun@ksun-VirtualBox:~$ pwd
+/home/ksun
+ksun@ksun-VirtualBox:~$ cat > file1
+1234
+ksun@ksun-VirtualBox:~$ cat > file2
+abcd
+ksun@ksun-VirtualBox:~$ cat > file3
+ksun@ksun-VirtualBox:~$ cp file2 file3
+ksun@ksun-VirtualBox:~$ cat file3
+abcd
+ksun@ksun-VirtualBox:~$ mv file3 file4
+ksun@ksun-VirtualBox:~$ cat file4
+abcd
+ksun@ksun-VirtualBox:~$ rm file4
+ksun@ksun-VirtualBox:~$ cd dir1
+ksun@ksun-VirtualBox:~/dir1$ rmdir dir2
+ksun@ksun-VirtualBox:~/dir1$ cd
+ksun@ksun-VirtualBox:~$ cat file1 file2 > file3
+ksun@ksun-VirtualBox:~$ cat file3
+1234
+abcd
+ksun@ksun-VirtualBox:~$ cat > f0
+xyz
+ksun@ksun-VirtualBox:~$ cat f?
+xyz
+ksun@ksun-VirtualBox:~$ cat f*
+xyz
+1234
+abcd
+1234
+abcd
+ksun@ksun-VirtualBox:~$ bc
+bc 1.07.1
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'. 
+ibase = 10
+obase = 2
+25
+11001
+obase = 8
+56
+70
+obase = 16
+20
+14
+ibase = 2
+obase = 1010
+111
+7
+obase = 1000
+101001
+51
+obase = 10000
+11111111
+FF
+ibase = 10000
+obase = 2
+FF
+11111111
+obase = 8
+FF
+377
+obase = A
+FF
+255
+ibase = 8
+obase = 2
+53
+101011
+obase = 12
+23
+19
+obase = 20
+777
+1FF
+quit
+ksun@ksun-VirtualBox:~$ gnuplot
+
+	G N U P L O T
+	Version 5.2 patchlevel 2    last modified 2017-11-01 
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2017
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type is now 'qt'
+gnuplot> plot sin(x)*cos(x)
+gnuplot> splot sin(x*x+y*y)
+gnuplot> set parametric
+
+	dummy variable is t for curves, u/v for surfaces
+gnuplot> set trange [0 to 2*pi]
+gnuplot> plot sin(t),cos(t)
+gnuplot> exit
