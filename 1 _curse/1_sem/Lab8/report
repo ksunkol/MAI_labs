@@ -1,0 +1,55 @@
+ksun@ksun:~$ cat 8.c
+#include <stdio.h>
+int main() {
+    int a,b
+    printf("Введите первое число ");
+    scanf("%d",&a); //Вводим первое число
+    printf("Введите второе число ");
+    scanf("%d",&b); //Вводим второе число
+    printf("Сумма = %d \n",a+b);
+    printf("Деление суммы на второе число = %d \n",(a+b)/b);
+    return 0;
+}
+ksun@ksun:~$ cc 8.c
+8.c: In function ‘main’:
+8.c:4:5: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘printf’
+     printf("Введите первое число ");
+     ^~~~~~
+8.c:7:17: error: ‘b’ undeclared (first use in this function)
+     scanf("%d",&b); //Вводим второе число
+                 ^
+8.c:7:17: note: each undeclared identifier is reported only once for each function it appears in
+ksun@ksun:~$ emacs 8.c
+ksun@ksun:~$ cat 8.c
+#include <stdio.h>
+int main() {
+    int a,b;
+    printf("Введите первое число ");
+    scanf("%d",&a); //Вводим первое число
+    printf("Введите второе число ");
+    scanf("%d",&b); //Вводим второе число
+    printf("Сумма = %d \n",a+b);
+    printf("Деление суммы на второе число = %d \n",(a+b)/b);
+    return 0;
+}
+ksun@ksun:~$ cc 8.c
+ksun@ksun:~$ ./a.out 8.c
+Введите первое число 2
+Введите второе число 3
+Сумма = 5 
+Деление суммы на второе число = 1 
+ksun@ksun:~$ ./a.out 8.c
+Введите первое число 4
+Введите второе число 2
+Сумма = 6 
+Деление суммы на второе число = 3
+ksun@ksun:~$ ./a.out 8.c
+Введите первое число 1
+Введите второе число 1
+Сумма = 2 
+Деление суммы на второе число = 2
+ksun@ksun:~$ ./a.out 8.c
+Введите первое число 1
+Введите второе число 0
+Сумма = 1 
+Исключение в операции с плавающей точкой (стек памяти сброшен на диск)
