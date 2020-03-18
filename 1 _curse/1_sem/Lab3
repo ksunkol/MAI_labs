@@ -1,0 +1,240 @@
+ksun@ksun:~$ ping yandex.ru
+PING yandex.ru (77.88.55.55) 56(84) bytes of data.
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=1 ttl=63 time=9.74 ms
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=2 ttl=63 time=11.9 ms
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=3 ttl=63 time=13.1 ms
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=4 ttl=63 time=10.2 ms
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=5 ttl=63 time=12.1 ms
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=6 ttl=63 time=13.2 ms
+64 bytes from yandex.ru (77.88.55.55): icmp_seq=7 ttl=63 time=12.7 ms
+^C
+--- yandex.ru ping statistics ---
+7 packets transmitted, 7 received, 0% packet loss, time 6012ms
+rtt min/avg/max/mdev = 9.745/11.880/13.240/1.291 ms
+
+ksun@ksun:~$ ssh 198068@192.168.2.200
+198068@192.168.2.200's password: 
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.15.0-64-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Могут быть обновлены 142 пакета.
+0 обновлений касаются безопасности системы.
+
+New release '18.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+198068@cameron:~$ ruptime
+Lubuntu       up       2:07,     0 users,  load 0.00, 0.00, 0.00
+Mint        down    4+18:58
+Sheylunn-UX3down    4+19:41
+User        down    4+22:02
+cameron       up   13+20:22,    11 users,  load 1.10, 1.13, 1.10
+client01    down    3+17:06
+client02      up       2:10,     0 users,  load 0.13, 0.05, 0.01
+client04    down    3+17:43
+client05      up       2:10,     1 user,   load 0.00, 0.00, 0.00
+client06      up       2:07,     1 user,   load 0.00, 0.00, 0.00
+client07    down    4+21:29
+client18    down   18+02:28
+client19    down    3+17:06
+client20      up       2:07,     0 users,  load 0.00, 0.00, 0.00
+client21    down   18+02:20
+client22      up       2:10,     0 users,  load 0.00, 0.00, 0.00
+dell        down    5+21:23
+nedosekovivadown    3+22:01
+
+198068@cameron:~$ ping client02
+PING client02 (192.168.2.38) 56(84) bytes of data.
+64 bytes from client02 (192.168.2.38): icmp_seq=1 ttl=64 time=0.130 ms
+64 bytes from client02 (192.168.2.38): icmp_seq=2 ttl=64 time=0.147 ms
+64 bytes from client02 (192.168.2.38): icmp_seq=3 ttl=64 time=0.133 ms
+64 bytes from client02 (192.168.2.38): icmp_seq=4 ttl=64 time=0.132 ms
+64 bytes from client02 (192.168.2.38): icmp_seq=5 ttl=64 time=0.149 ms
+^C
+--- client02 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4089ms
+rtt min/avg/max/mdev = 0.130/0.138/0.149/0.011 ms
+198068@cameron:~$ rlogin client02
+198068@client02's password: 
+Welcome to Ubuntu 17.04 (GNU/Linux 4.10.0-19-generic i686)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Могут быть обновлены 223 пакета.
+149 обновлений касаются безопасности системы.
+
+Your Ubuntu release is not supported anymore.
+For upgrade information, please visit:
+http://www.ubuntu.com/releaseendoflife
+
+New release '18.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+198068@client02:~$ exit
+выход
+Connection to client02 closed.
+198068@cameron:~$ ssh client02 ls -a
+198068@client02's password: 
+.
+..
+.bash_history
+.bash_logout
+.bashrc
+.cache
+.config
+.profile
+.ssh
+.Xdefaults
+.xscreensaver
+198068@cameron:~$ ssh client02 mkdir home
+198068@client02's password: 
+198068@cameron:~$ ssh client02 ls
+198068@client02's password: 
+home
+198068@cameron:~$ cat > file1
+12345
+^C
+198068@cameron:~$ scp file1 client02:`pwd`
+198068@client02's password: 
+file1                                        100%    6     0.0KB/s   00:00    
+198068@cameron:~$ ssh client02 cat file1
+198068@client02's password: 
+12345
+198068@cameron:~$ ssh client02 cat > file0
+198068@client02's password: 
+198068@cameron:~$ ssh client02 ls
+198068@client02's password: 
+file0
+file1
+home
+198068@cameron:~$ scp client02:~/file0  .
+198068@client02's password: 
+198068@cameron:~$ ls
+file0  file1  home
+
+198068@cameron:~$ mkdir Inf
+198068@cameron:~$ scp -r Inf client02
+198068@cameron:~$ ssh client02 ls
+198068@client02's password:
+file0
+file1
+home
+Inf
+
+198068@cameron:~$ sftp client06
+198068@client06's password:
+Connected to client06.
+sftp> pwd
+Remote working directory: /stud/198068
+sftp> ls -l
+drwxrwxr-x 2 198068 198068 4096 Sep 21 11:12 Inf
+drwxrwxr-x 2 198068 198068 4096 Sep 21 11:09 home
+-rw-rw-r— 1 198068 198068 4 Sep 21 11:16 file1
+-rw-rw-r— 1 198068 198068 30 Sep 21 08:43 file0
+sftp> exit
+198068@cameron:~$ ssh client06 cat > udal
+198068@client06's password:
+5678
+198068@cameron:~$ cat > osnov
+1234
+198068@cameron:~$ sftp client06
+198068@client06's password:
+Connected to client06.
+sftp> get udal
+Fetching /stud/198068/udal to udal
+/stud/198068/udal 100% 5 0.0KB/s 00:00
+sftp> !ls
+Inf file0 file1 home osnov udal
+sftp> put osnov
+Uploading osnov to /stud/198068/osnov
+osnov 0% 0 0.0KB/s —:— ETA
+sftp> ls -l
+drwxrwxr-x 2 198068 198068 4096 Sep 21 11:12 Inf
+drwxrwxr-x 2 198068 198068 4096 Sep 21 11:09 home
+-rw-rw-r— 1 198068 198068 4 Sep 21 11:16 file1
+-rw-rw-r— 1 198068 198068 30 Sep 21 08:43 file0
+-rw-rw-r— 1 198068 198068 0 Sep 28 11:34 osnov
+-rw-rw-r— 1 198068 198068 0 Sep 28 11:35 udal
+sftp> rm osnov
+Removing /stud/198068/osnov
+sftp> ls -l
+drwxrwxr-x 2 198068 198068 4096 Sep 21 11:12 Inf
+drwxrwxr-x 2 198068 198068 4096 Sep 21 11:09 home
+-rw-rw-r— 1 198068 198068 4 Sep 21 11:16 file1
+-rw-rw-r— 1 198068 198068 30 Sep 21 08:43 file0
+-rw-rw-r— 1 198068 198068 0 Sep 28 11:35 udal
+sftp> !cat > osnova
+9876
+sftp> mput o*
+Uploading osnova to /stud/198068/osnova
+osnova 0% 0 0.0KB/s —:— ETA
+Uploading osnov to /stud/198068/osnov
+osnov 0% 0 0.0KB/s —:— ETA
+
+198068@cameron:~$ exit
+logout
+Connection to 192.168.2.200 closed.
+
+ksun@ksun:~$ cat > file1
+12345
+ksun@ksun:~$ tar -cf ar1.tar file1
+ksun@ksun:~$ ls
+ ar1.tar   snap    Документы   Изображения   Общедоступные   Шаблоны
+ file1     Видео   Загрузки    Музыка       'Рабочий стол'
+ksun@ksun:~$ tar -tvf ar1.tar
+-rw-r--r-- ksun/ksun         6 2019-09-25 13:16 file1
+ksun@ksun:~$ du -b file1
+6	file1
+ksun@ksun:~$ du -b ar1.tar
+10240	ar1.tar
+ksun@ksun:~$ tar -zcf ar1.tar.gz file1
+ksun@ksun:~$ du -b ar1.tar.gz
+124	ar1.tar.gz
+ksun@ksun:~$ gzip -d -c ar1.tar.gz > ar1.tar
+ksun@ksun:~$ du -b ar1.tar
+10240	ar1.tar
+
+ksun@ksun:~$ rm ar1.tgz ar1.tar ar1.tar.gz
+ksun@ksun:~$ mv file1 file2
+ksun@ksun:~$ ls
+ file2   Видео       Загрузки      Музыка         'Рабочий стол'
+ snap    Документы   Изображения   Общедоступные   Шаблоны
+ksun@ksun:~$ pax -w -x tar file2 > ar2.tar
+ksun@ksun:~$ ls
+ ar2.tar   snap    Документы   Изображения   Общедоступные   Шаблоны
+ file2     Видео   Загрузки    Музыка       'Рабочий стол'
+ksun@ksun:~$ tar -tvf ar2.tar
+-rw-r--r-- 1000/1000         6 2019-09-25 13:16 file2
+ksun@ksun:~$ gzip -9 -c ar2.tar > ar2.tgz
+ksun@ksun:~$ ls
+ ar2.tar   file2   Видео       Загрузки      Музыка         'Рабочий стол'
+ ar2.tgz   snap    Документы   Изображения   Общедоступные   Шаблоны
+ksun@ksun:~$ gzip -c -d ar2.tgz | tar -xf - 
+
+
+ksun@ksun:~$ cat > file3
+12345
+Информатика
+ksun@ksun:~$ iconv -c -f koi8-r -t cp1251 file3
+12345
+
+
+ksun@ksun:~$ dict elephant | cat > file4
+ksun@ksun:~$ cat file4
+6 definitions found
+From The Free On-line Dictionary of Computing (18 March 2015) [foldoc]:
+
+  elephant
+  
+     Large, grey, four-legged mammal.
+(вывод статьи про слона)
+
+ksun@ksun:~$ unix2dos file4
+unix2dos: преобразование файла file4 в формат DOS…
+ksun@ksun:~$ dos2unix file4
+dos2unix: преобразование файла file4 в формат Unix…
